@@ -1,0 +1,8 @@
+.box-action {
+  display: flex !important;
+  justify-content: flex-end !important;
+  button {
+    margin-right: 10px;
+    cursor: pointer;
+  }
+}

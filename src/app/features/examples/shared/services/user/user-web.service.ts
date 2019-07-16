@@ -20,12 +20,10 @@ export class UserWebService {
   }
 
   getAll(): Observable<User[]> {
-    // return this.http.get<User[]>(`${this.urlStubs}`);
-    return of([new User()]);
+    return this.http.get<User[]>(`${this.urlStubs}`);
   }
 
   get(id: number): Observable<User> {
-    // return of(new User());
     return this.http
       .get<User>(`${this.urlStubs}`)
       .pipe(

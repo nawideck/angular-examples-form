@@ -4,6 +4,8 @@ import { FormArray, FormGroup, FormBuilder, FormControl, Validators } from '@ang
 
 import { User } from '../../shared/models/user/user.model';
 import { FormCustom } from 'src/app/core/interfaces/form-custom';
+import { phoneValidator } from 'src/app/ui/directives/validators/phone-validator.directive';
+import { Job } from '../../shared/models/job/job.model';
 
 @Component({
   selector: 'app-examples-form',
@@ -11,7 +13,19 @@ import { FormCustom } from 'src/app/core/interfaces/form-custom';
   styleUrls: ['./examples-form.component.scss']
 })
 export class ExamplesFormPageComponent implements OnInit, FormCustom {
+  /**
+   * TODO: <select> default value in create mod
+   * TODO: radio buttons
+   * TODO: checkbox
+   * TODO: autocomplete
+   * TODO: upload file (ajax)
+   * TODO: add others validators
+   * TODO: errors
+   * TODO: general ergonomie
+   */
+
   @Input() user: User;
+  @Input() jobs: Job[];
   @Input() editionMode: boolean;
 
   // Components Output Event
@@ -20,31 +34,32 @@ export class ExamplesFormPageComponent implements OnInit, FormCustom {
   // Form :
   public userForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder) {
+    this.createForm();
+  }
 
   ngOnInit() {
-    console.log(this.user);
-    console.log(this.editionMode);
+    this.populateForm();
+    console.log(this.jobs);
   }
 
   createForm(): void {
     this.userForm = this.fb.group({
-      name: ['', [Validators.required]]
-      // callCenters: this.fb.array([])
+      name: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      phone: ['', [phoneValidator()]],
+      job: ['']
     });
   }
 
   populateForm(): void {
     if (this.user) {
       this.userForm.patchValue({
-        name: this.user.name
+        name: this.user.name,
+        email: this.user.email,
+        phone: this.user.phone,
+        job: this.user.job
       });
-
-      // if (this.user.callCenters) {
-      //   this.user.callCenters.forEach((element) => {
-      //     this.addCallCenter(element);
-      //   });
-      // }
     }
   }
 
@@ -57,5 +72,11 @@ export class ExamplesFormPageComponent implements OnInit, FormCustom {
     if (this.userForm.valid) {
       this.formSubmitted.emit(this.prepareSaveEntity());
     }
+  }
+
+  compareFnJob(job1: Job, job2: Job) {
+    console.log(job1);
+    console.log(job2);
+    return job1 && job2 ? job1.id === job2.id : job1 === job2;
   }
 }

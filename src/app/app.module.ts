@@ -7,9 +7,10 @@ import { ExamplesModule } from './features/examples/examples.module';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PhoneValidatorDirective } from './ui/directives/validators/phone-validator.directive';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, PhoneValidatorDirective],
   imports: [BrowserModule, AppRoutingModule, ExamplesModule, HttpClientModule, CommonModule, BrowserAnimationsModule],
   providers: [],
   bootstrap: [AppComponent]

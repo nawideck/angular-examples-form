@@ -3,6 +3,10 @@
     "id": 1,
     "name": "Nawideck",
     "phone": "+33123456789",
-    "email": "examples@nawi-examples.fr"
+    "email": "examples@nawi-examples.fr",
+    "job": {
+      "id": 1,
+      "name": "developer"
+    }
   }
 ]
