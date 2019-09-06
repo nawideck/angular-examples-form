@@ -14,11 +14,10 @@ import { Job } from '../../shared/models/job/job.model';
 })
 export class ExamplesFormPageComponent implements OnInit, FormCustom {
   /**
-   * TODO: <select> default value in create mod
-   * TODO: radio buttons
    * TODO: checkbox
    * TODO: autocomplete
    * TODO: upload file (ajax)
+   * TODO: ArrayForm
    * TODO: add others validators
    * TODO: errors
    * TODO: general ergonomie
@@ -48,7 +47,8 @@ export class ExamplesFormPageComponent implements OnInit, FormCustom {
       name: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       phone: ['', [phoneValidator()]],
-      job: ['']
+      job: [''],
+      genre: ['']
     });
   }
 
@@ -58,7 +58,8 @@ export class ExamplesFormPageComponent implements OnInit, FormCustom {
         name: this.user.name,
         email: this.user.email,
         phone: this.user.phone,
-        job: this.user.job
+        job: this.user.job,
+        genre: this.user.genre
       });
     }
   }
@@ -75,8 +76,6 @@ export class ExamplesFormPageComponent implements OnInit, FormCustom {
   }
 
   compareFnJob(job1: Job, job2: Job) {
-    console.log(job1);
-    console.log(job2);
     return job1 && job2 ? job1.id === job2.id : job1 === job2;
   }
 }
