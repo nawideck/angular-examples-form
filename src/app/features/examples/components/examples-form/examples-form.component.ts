@@ -3,8 +3,9 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormArray, FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 
 import { User } from '../../shared/models/user/user.model';
-import { FormCustom } from 'src/app/core/interfaces/form-custom';
-import { phoneValidator } from 'src/app/ui/directives/validators/phone-validator.directive';
+
+import { FormCustom } from '../../../../core/interfaces/form-custom';
+import { phoneValidator } from '../../../../ui/directives/validators/phone-validator.directive';
 import { Job } from '../../shared/models/job/job.model';
 
 @Component({
