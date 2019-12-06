@@ -1,0 +1,9 @@
+<h1>Examples form</h1>
+<div *ngIf="user$ | async">
+  <app-examples-form
+    [user]="user"
+    [jobs]="jobs"
+    [editionMode]="editionMode"
+    (formSubmitted)="onSubmit($event)"
+  ></app-examples-form>
+</div>
