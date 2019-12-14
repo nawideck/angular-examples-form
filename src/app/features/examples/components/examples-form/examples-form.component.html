@@ -1,45 +1,26 @@
 <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-  <div>
-    <label>
-      Name *
-    </label>
-    <input type="text" formControlName="name" />
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputEmail4">Name *</label>
+      <input type="email" class="form-control" id="inputEmail4" formControlName="name" />
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputPassword4">Email *</label>
+      <input class="form-control" id="inputPassword4" formControlName="email" />
+    </div>
   </div>
-  <div>
-    <label>
-      Email *
-    </label>
-    <input type="text" formControlName="email" />
-  </div>
-  <div>
-    <label>
-      Phone
-    </label>
-    <input type="text" formControlName="phone" />
-  </div>
-  <div>
-    <label>Job</label>
-    <select formControlName="job" [compareWith]="compareFnJob">
-      <option [value]="null">-- select a value --</option>
-      <option *ngFor="let job of jobs" [value]="job">{{ job?.name }}</option>
-    </select>
-  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputPassword4">Phone *</label>
+      <input class="form-control" id="inputPassword4" formControlName="phone" />
+    </div>
 
-  <div>
-    <label id="radio-group-label">Genre</label>
-    <!-- <mat-radio-group aria-labelledby="radio-group-label" class="radio-group" formControlName="genre">
-      <mat-radio-button class="radio-button" value="male">
-        Male
-      </mat-radio-button>
-      <mat-radio-button class="radio-button" value="female">
-        Female
-      </mat-radio-button>
-    </mat-radio-group> -->
+    <div class="form-group col-md-6">
+      <label for="inputState">Job</label>
+      <select id="inputState" class="form-control" formControlName="job">
+        <option *ngFor="let job of jobs">{{ job.name }}</option>
+      </select>
+    </div>
   </div>
-
-  <div class="box-action">
-    <button type="submit">
-      Save
-    </button>
-  </div>
+  <button type="submit" class="btn btn-primary">Sign in</button>
 </form>
