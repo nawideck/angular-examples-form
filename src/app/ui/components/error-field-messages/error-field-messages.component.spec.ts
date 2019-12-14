@@ -4,7 +4,7 @@ import { ErrorFieldMessagesComponent } from './error-field-messages.component';
 import { FormControl, Validators } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
-fdescribe('ErrorFieldMessagesComponent', () => {
+describe('ErrorFieldMessagesComponent', () => {
   let fixture: ComponentFixture<ErrorFieldMessagesComponent>;
   let component: ErrorFieldMessagesComponent;
   beforeEach(async(() => {
@@ -20,8 +20,6 @@ fdescribe('ErrorFieldMessagesComponent', () => {
   });
 
   it('should create', () => {
-    // const fixture: ComponentFixture<ErrorFieldMessagesComponent> = TestBed.createComponent(ErrorFieldMessagesComponent);
-    // const component: ErrorFieldMessagesComponent = fixture.componentInstance;
     expect(component).toBeTruthy();
   });
 
