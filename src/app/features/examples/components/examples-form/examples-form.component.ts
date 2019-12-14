@@ -67,7 +67,7 @@ export class ExamplesFormPageComponent implements OnInit, FormCustom {
   }
 
   prepareSaveEntity(): User {
-    const formModel: User = this.userForm.value;
+    const formModel: User = this.userForm.getRawValue();
     return Object.assign(this.user, formModel);
   }
 
@@ -79,5 +79,9 @@ export class ExamplesFormPageComponent implements OnInit, FormCustom {
 
   compareFnJob(job1: Job, job2: Job) {
     return job1 && job2 ? job1.id === job2.id : job1 === job2;
+  }
+
+  getFormRawValue() {
+    return this.userForm.getRawValue();
   }
 }
