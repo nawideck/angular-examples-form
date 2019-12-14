@@ -4,9 +4,11 @@
     <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
       <div class="form-row">
         <div class="form-group col-md-6">
+          <!-- Input Name -->
           <label for="inputEmail4">Name *</label>
           <input type="email" class="form-control" id="inputEmail4" formControlName="name" />
         </div>
+        <!-- Input Email -->
         <div class="form-group col-md-6">
           <label for="inputPassword4">Email *</label>
           <input class="form-control" id="inputPassword4" formControlName="email" />
@@ -14,10 +16,11 @@
       </div>
       <div class="form-row">
         <div class="form-group col-md-6">
+          <!-- Input Phone -->
           <label for="inputPassword4">Phone *</label>
           <input class="form-control" id="inputPassword4" formControlName="phone" />
         </div>
-
+        <!-- Input Job -->
         <div class="form-group col-md-6">
           <label for="inputState">Job</label>
           <select id="inputState" class="form-control" formControlName="job" [compareWith]="compareFnJob">
@@ -25,18 +28,47 @@
           </select>
         </div>
       </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" id="inputGenreMale" formControlName="genre" value="male" />
-        <label class="form-check-label" for="inputGenreMale">
-          Male
-        </label>
+      <!-- Radio Genre -->
+      <div class="form-row">
+        <div class="form-group col-md12">
+          <label class="">Genre</label>
+        </div>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="radio" id="inputGenreFemale" formControlName="genre" value="female" />
-        <label class="form-check-label" for="inputGenreFemale">
-          Female
-        </label>
+        <div class="custom-control custom-radio">
+          <input class="custom-control-input" type="radio" id="inputGenreMale" formControlName="genre" value="male" />
+          <label class="custom-control-label" for="inputGenreMale">
+            Male
+          </label>
+        </div>
       </div>
+      <div class="form-check">
+        <div class="custom-control custom-radio">
+          <input
+            class="custom-control-input"
+            type="radio"
+            id="inputGenreFemale"
+            formControlName="genre"
+            value="female"
+          />
+          <label class="custom-control-label" for="inputGenreFemale">
+            Female
+          </label>
+        </div>
+      </div>
+      <!-- Radio Genre -->
+      <div class="form-row">
+        <div class="form-group col-md12">
+          <label class="">State</label>
+        </div>
+      </div>
+      <div class="form-check">
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="customCheck1" formControlName="activated" />
+          <label class="custom-control-label" for="customCheck1">activated</label>
+        </div>
+      </div>
+
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="inputEmail4">Birth date</label>
@@ -52,7 +84,7 @@
         <div class="form-row">
           <label for="exampleFormControlTextarea1">Comments :</label>
         </div>
-        <div *ngFor="let comment of commentsArray.controls; let i = index">
+        <div *ngFor="let comment of commentsFormArray.controls; let i = index">
           <div [formGroupName]="i">
             <div class="form-row">
               <div class="form-group col-12">

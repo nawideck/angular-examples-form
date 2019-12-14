@@ -17,14 +17,16 @@ import { UserComment } from '../../shared/models/user-comment/user-comment';
 })
 export class ExamplesFormPageComponent implements OnInit, FormCustom {
   /**
-   * TODO: checkbox
+   * TODO: ngSelect example (multi select)
    * TODO: autocomplete
    * TODO: upload file (ajax)
-   * TODO: ArrayForm
+   * TODO: ArrayForm add button
    * TODO: add others validators
    * TODO: errors
    * TODO: general ergonomie
    * TODO: améliorer form pattern (idea ? : https://blog.grossman.io/real-world-angular-reactive-forms/ ?)
+   * TODO: https://angular-templates.io/tutorials/about/angular-forms-and-validations
+   * TODO: try catch ?
    */
 
   @Input() user: User;
@@ -55,7 +57,8 @@ export class ExamplesFormPageComponent implements OnInit, FormCustom {
       job: [null],
       genre: [''],
       birthDate: [''],
-      comments: this.fb.array([])
+      comments: this.fb.array([]),
+      activated: [false]
     });
   }
 
@@ -67,10 +70,11 @@ export class ExamplesFormPageComponent implements OnInit, FormCustom {
         phone: this.user.phone,
         job: this.user.job,
         genre: this.user.genre,
-        birthDate: moment(this.user.birthDate).toDate()
+        birthDate: moment(this.user.birthDate).toDate(),
+        activated: this.user.activated
       });
     }
-    this.loadComments(this.user.comments);
+    this.initCommentsFormArray(this.user.comments);
   }
 
   prepareSaveEntity(): User {
@@ -92,7 +96,7 @@ export class ExamplesFormPageComponent implements OnInit, FormCustom {
     return this.userForm.getRawValue();
   }
 
-  get commentsArray(): FormArray {
+  get commentsFormArray(): FormArray {
     return this.userForm.get('comments') as FormArray;
   }
 
@@ -104,20 +108,20 @@ export class ExamplesFormPageComponent implements OnInit, FormCustom {
     });
   }
 
-  addComment(comment: UserComment): FormGroup {
+  createComment(comment: UserComment): FormGroup {
     const commentGroup = this.getCommentsFormGroup(comment);
-    console.log(this.commentsArray);
-    this.commentsArray.push(commentGroup);
+    console.log(this.commentsFormArray);
+    this.commentsFormArray.push(commentGroup);
 
     // this.userForm.markAsDirty();
 
     return commentGroup;
   }
 
-  loadComments(comments: UserComment[]) {
+  initCommentsFormArray(comments: UserComment[]) {
     if (this.user && this.user.comments) {
       this.user.comments.forEach((comment: UserComment) => {
-        this.addComment(comment);
+        this.createComment(comment);
       });
     }
   }
