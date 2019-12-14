@@ -1,26 +1,31 @@
-<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="inputEmail4">Name *</label>
-      <input type="email" class="form-control" id="inputEmail4" formControlName="name" />
-    </div>
-    <div class="form-group col-md-6">
-      <label for="inputPassword4">Email *</label>
-      <input class="form-control" id="inputPassword4" formControlName="email" />
-    </div>
-  </div>
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="inputPassword4">Phone *</label>
-      <input class="form-control" id="inputPassword4" formControlName="phone" />
-    </div>
+<div class="row">
+  <div class="col-md-6">
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputEmail4">Name *</label>
+          <input type="email" class="form-control" id="inputEmail4" formControlName="name" />
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputPassword4">Email *</label>
+          <input class="form-control" id="inputPassword4" formControlName="email" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputPassword4">Phone *</label>
+          <input class="form-control" id="inputPassword4" formControlName="phone" />
+        </div>
 
-    <div class="form-group col-md-6">
-      <label for="inputState">Job</label>
-      <select id="inputState" class="form-control" formControlName="job">
-        <option *ngFor="let job of jobs">{{ job.name }}</option>
-      </select>
-    </div>
+        <div class="form-group col-md-6">
+          <label for="inputState">Job</label>
+          <select id="inputState" class="form-control" formControlName="job">
+            <option *ngFor="let job of jobs">{{ job.name }}</option>
+          </select>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Sign in</button>
+    </form>
   </div>
-  <button type="submit" class="btn btn-primary">Sign in</button>
-</form>
+  <div class="col-md-6"><app-json-viewer [object]="user"></app-json-viewer></div>
+</div>
