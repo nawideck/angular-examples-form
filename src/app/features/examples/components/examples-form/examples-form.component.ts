@@ -39,6 +39,7 @@ export class ExamplesFormPageComponent implements OnInit, FormCustom {
   }
 
   ngOnInit() {
+    console.log(this.user);
     this.populateForm();
     console.log(this.jobs);
   }
@@ -48,7 +49,7 @@ export class ExamplesFormPageComponent implements OnInit, FormCustom {
       name: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       phone: ['', [phoneValidator()]],
-      job: [''],
+      job: [null],
       genre: ['']
     });
   }
