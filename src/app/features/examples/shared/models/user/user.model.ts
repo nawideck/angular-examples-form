@@ -10,6 +10,7 @@ export class User {
   public genre: string;
   public birthDate: string;
   public comments: UserComment[];
+  public activated: boolean;
 
   constructor() {
     this.id = null;
@@ -20,5 +21,6 @@ export class User {
     this.genre = 'male';
     this.birthDate = '';
     this.comments = [];
+    this.activated = false;
   }
 }
