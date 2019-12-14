@@ -1,53 +1,26 @@
 <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-  <div>
-    <mat-form-field style="width: 100%">
-      <mat-label>
-        Name *
-      </mat-label>
-      <input matInput type="text" formControlName="name" />
-    </mat-form-field>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputEmail4">Name *</label>
+      <input type="email" class="form-control" id="inputEmail4" formControlName="name" />
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputPassword4">Email *</label>
+      <input class="form-control" id="inputPassword4" formControlName="email" />
+    </div>
   </div>
-  <div>
-    <mat-form-field style="width: 100%">
-      <mat-label>
-        Email *
-      </mat-label>
-      <input matInput type="text" formControlName="email" />
-    </mat-form-field>
-  </div>
-  <div>
-    <mat-form-field style="width: 100%">
-      <mat-label>
-        Phone
-      </mat-label>
-      <input matInput type="text" formControlName="phone" />
-    </mat-form-field>
-  </div>
-  <div>
-    <mat-form-field style="width: 100%">
-      <mat-label>Job</mat-label>
-      <mat-select formControlName="job" [compareWith]="compareFnJob">
-        <mat-option [value]="null">-- select a value --</mat-option>
-        <mat-option *ngFor="let job of jobs" [value]="job">{{ job?.name }}</mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputPassword4">Phone *</label>
+      <input class="form-control" id="inputPassword4" formControlName="phone" />
+    </div>
 
-  <div>
-    <label id="radio-group-label">Genre</label>
-    <mat-radio-group aria-labelledby="radio-group-label" class="radio-group" formControlName="genre">
-      <mat-radio-button class="radio-button" value="male">
-        Male
-      </mat-radio-button>
-      <mat-radio-button class="radio-button" value="female">
-        Female
-      </mat-radio-button>
-    </mat-radio-group>
+    <div class="form-group col-md-6">
+      <label for="inputState">Job</label>
+      <select id="inputState" class="form-control" formControlName="job">
+        <option *ngFor="let job of jobs">{{ job.name }}</option>
+      </select>
+    </div>
   </div>
-
-  <div class="box-action">
-    <button mat-raised-button color="primary" type="submit">
-      <i class="material-icons">save</i>
-    </button>
-  </div>
+  <button type="submit" class="btn btn-primary">Sign in</button>
 </form>
