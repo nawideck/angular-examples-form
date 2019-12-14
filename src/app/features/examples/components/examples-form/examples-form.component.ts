@@ -44,9 +44,7 @@ export class ExamplesFormPageComponent implements OnInit, FormCustom {
   }
 
   ngOnInit() {
-    console.log(this.user);
     this.populateForm();
-    console.log(this.jobs);
   }
 
   createForm(): void {
@@ -110,7 +108,6 @@ export class ExamplesFormPageComponent implements OnInit, FormCustom {
 
   createComment(comment: UserComment): FormGroup {
     const commentGroup = this.getCommentsFormGroup(comment);
-    console.log(this.commentsFormArray);
     this.commentsFormArray.push(commentGroup);
 
     // this.userForm.markAsDirty();

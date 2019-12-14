@@ -28,6 +28,7 @@ export class ExamplesEditPageComponent implements OnInit {
   constructor(private userWebService: UserWebService, private jobWebService: JobWebService) {
     this.user = null;
     this.editionMode = true;
+    this.userId = 1;
   }
 
   ngOnInit() {
@@ -44,9 +45,7 @@ export class ExamplesEditPageComponent implements OnInit {
     return user$
       .pipe(
         map((user: User) => {
-          this.user = user;
-          console.log(this.user);
-          return this.user;
+          return (this.user = user);
         })
       )
       .pipe(share());
@@ -57,9 +56,7 @@ export class ExamplesEditPageComponent implements OnInit {
     return user$
       .pipe(
         map((jobs: Job[]) => {
-          this.jobs = jobs;
-          console.log(this.jobs);
-          return this.jobs;
+          return (this.jobs = jobs);
         })
       )
       .pipe(share());
