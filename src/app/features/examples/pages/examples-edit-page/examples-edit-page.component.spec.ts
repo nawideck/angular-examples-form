@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ExamplesEditPageComponent } from './examples-edit-page.component';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('ExamplesEditPageComponent', () => {
   let component: ExamplesEditPageComponent;
@@ -8,7 +10,9 @@ describe('ExamplesEditPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ExamplesEditPageComponent]
+      declarations: [ExamplesEditPageComponent],
+      imports: [HttpClientTestingModule],
+      schemas: [NO_ERRORS_SCHEMA]
     }).compileComponents();
   }));
 

@@ -9,6 +9,7 @@ import { phoneValidator } from '../../../../ui/directives/validators/phone-valid
 import { Job } from '../../shared/models/job/job.model';
 import * as moment from 'moment';
 import { UserComment } from '../../shared/models/user-comment/user-comment';
+import { FormToolsService } from 'src/app/core/shared/services/form-tools/form-tools.service';
 
 @Component({
   selector: 'app-examples-form',
@@ -38,8 +39,10 @@ export class ExamplesFormPageComponent implements OnInit, FormCustom {
 
   // Form :
   public userForm: FormGroup;
+  private isSubmitted: boolean;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private formToolsService: FormToolsService) {
+    this.isSubmitted = false;
     this.createForm();
   }
 
@@ -121,5 +124,9 @@ export class ExamplesFormPageComponent implements OnInit, FormCustom {
         this.createComment(comment);
       });
     }
+  }
+
+  getFieldClassValidation(formControl: FormControl): any {
+    return this.formToolsService.getFieldClassValidation(formControl, this.isSubmitted);
   }
 }

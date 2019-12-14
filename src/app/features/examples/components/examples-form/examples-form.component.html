@@ -6,19 +6,44 @@
         <div class="form-group col-md-6">
           <!-- Input Name -->
           <label for="inputEmail4">Name *</label>
-          <input type="email" class="form-control" id="inputEmail4" formControlName="name" />
+          <input
+            type="text"
+            class="form-control"
+            id="inputEmail4"
+            formControlName="name"
+            [ngClass]="getFieldClassValidation(userForm?.get('name'))"
+          />
+          <div class="invalid-feedback">
+            <app-error-field-messages [fc]="userForm?.get('name')"></app-error-field-messages>
+          </div>
         </div>
         <!-- Input Email -->
         <div class="form-group col-md-6">
           <label for="inputPassword4">Email *</label>
-          <input class="form-control" id="inputPassword4" formControlName="email" />
+          <input
+            class="form-control"
+            id="inputPassword4"
+            formControlName="email"
+            [ngClass]="getFieldClassValidation(userForm?.get('email'))"
+          />
+          <div class="invalid-feedback">
+            <app-error-field-messages [fc]="userForm?.get('email')"></app-error-field-messages>
+          </div>
         </div>
       </div>
       <div class="form-row">
         <div class="form-group col-md-6">
           <!-- Input Phone -->
           <label for="inputPassword4">Phone *</label>
-          <input class="form-control" id="inputPassword4" formControlName="phone" />
+          <input
+            class="form-control"
+            id="inputPassword4"
+            formControlName="phone"
+            [ngClass]="getFieldClassValidation(userForm?.get('phone'))"
+          />
+          <div class="invalid-feedback">
+            <app-error-field-messages [fc]="userForm?.get('phone')"></app-error-field-messages>
+          </div>
         </div>
         <!-- Input Job -->
         <div class="form-group col-md-6">
