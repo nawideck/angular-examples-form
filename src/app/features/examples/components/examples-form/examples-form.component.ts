@@ -7,6 +7,7 @@ import { User } from '../../shared/models/user/user.model';
 import { FormCustom } from '../../../../core/interfaces/form-custom';
 import { phoneValidator } from '../../../../ui/directives/validators/phone-validator.directive';
 import { Job } from '../../shared/models/job/job.model';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-examples-form',
@@ -50,7 +51,8 @@ export class ExamplesFormPageComponent implements OnInit, FormCustom {
       email: ['', [Validators.required, Validators.email]],
       phone: ['', [phoneValidator()]],
       job: [null],
-      genre: ['']
+      genre: [''],
+      birthDate: ['']
     });
   }
 
@@ -61,7 +63,8 @@ export class ExamplesFormPageComponent implements OnInit, FormCustom {
         email: this.user.email,
         phone: this.user.phone,
         job: this.user.job,
-        genre: this.user.genre
+        genre: this.user.genre,
+        birthDate: moment(this.user.birthDate).toDate()
       });
     }
   }
