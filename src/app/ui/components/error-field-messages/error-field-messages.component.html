@@ -1,23 +1,24 @@
+<span class="jasmine-master-span">Texte</span>
 <ng-container *ngFor="let error of getFieldErrors()" [ngSwitch]="error.name">
   <!-- Generic Angular Validators -->
   <ng-container *ngSwitchCase="'email'" i18n="Error email|Form : Error email@@form.error.generic.email">
-    Email format incorrect
+    <span class="jasmine-master-node">Email format incorrect</span>
   </ng-container>
 
   <ng-container *ngSwitchCase="'max'" i18n="Error max|Form : Error max@@form.error.generic.max">
-    Max. value: {{ error.info.max }}
+    Max. value: {{ error?.info?.max }}
   </ng-container>
 
   <ng-container *ngSwitchCase="'maxlength'" i18n="Error maxlength|Form : Error maxlength@@form.error.generic.maxlength">
-    {{ error.info.requiredLength }} chars max.
+    {{ error?.info?.requiredLength }} chars max.
   </ng-container>
 
   <ng-container *ngSwitchCase="'min'" i18n="Error min|Form : Error min@@form.error.generic.min">
-    Min. value : {{ error.info.min }}
+    Min. value : {{ error?.info?.min }}
   </ng-container>
 
   <ng-container *ngSwitchCase="'minlength'" i18n="Error minlength|Form : Error minlength@@form.error.generic.minlength">
-    {{ error.info.requiredLength }} chars min.
+    {{ error?.info?.requiredLength }} chars min.
   </ng-container>
 
   <ng-container *ngSwitchCase="'pattern'" i18n="Error pattern|Form : Error pattern@@form.error.generic.pattern">
