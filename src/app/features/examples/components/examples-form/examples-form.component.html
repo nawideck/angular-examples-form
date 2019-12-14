@@ -56,7 +56,7 @@
           </label>
         </div>
       </div>
-      <!-- Radio Genre -->
+      <!-- Checkbox of 'activated' field -->
       <div class="form-row">
         <div class="form-group col-md12">
           <label class="">State</label>
@@ -71,6 +71,7 @@
 
       <div class="form-row">
         <div class="form-group col-md-6">
+          <!-- Input Birth date -->
           <label for="inputEmail4">Birth date</label>
           <input type="text" class="form-control" id="inputEmail4" formControlName="birthDate" bsDatepicker />
         </div>
@@ -79,7 +80,7 @@
           <input class="form-control" id="inputPassword4" formControlName="email" />
         </div> -->
       </div>
-
+      <!-- FormArray Comments -->
       <div formArrayName="comments">
         <div class="form-row">
           <label for="exampleFormControlTextarea1">Comments :</label>
@@ -88,6 +89,7 @@
           <div [formGroupName]="i">
             <div class="form-row">
               <div class="form-group col-12">
+                <!-- Text area comment value-->
                 <textarea
                   formControlName="value"
                   class="form-control w-100"
@@ -95,7 +97,7 @@
                   rows="3"
                 ></textarea>
               </div>
-
+              <!-- Date comment -->
               <div class="fom-row text-right w-100">
                 {{ comment.get('date').value | date }}
               </div>

@@ -24,9 +24,9 @@ export class ExamplesFormPageComponent implements OnInit, FormCustom {
    * TODO: add others validators
    * TODO: errors
    * TODO: general ergonomie
-   * TODO: améliorer form pattern (idea ? : https://blog.grossman.io/real-world-angular-reactive-forms/ ?)
-   * TODO: https://angular-templates.io/tutorials/about/angular-forms-and-validations
+   * TODO: améliorer form pattern
    * TODO: try catch ?
+   * TODO: tests
    */
 
   @Input() user: User;
@@ -73,8 +73,8 @@ export class ExamplesFormPageComponent implements OnInit, FormCustom {
         birthDate: moment(this.user.birthDate).toDate(),
         activated: this.user.activated
       });
+      this.initCommentsFormArray(this.user.comments);
     }
-    this.initCommentsFormArray(this.user.comments);
   }
 
   prepareSaveEntity(): User {
