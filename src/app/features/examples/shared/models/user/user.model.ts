@@ -1,4 +1,5 @@
 import { Job } from '../job/job.model';
+import { UserComment } from '../user-comment/user-comment';
 
 export class User {
   public id: number;
@@ -8,6 +9,7 @@ export class User {
   public job: Job;
   public genre: string;
   public birthDate: string;
+  public comments: UserComment[];
 
   constructor() {
     this.id = null;
@@ -17,5 +19,6 @@ export class User {
     this.job = new Job();
     this.genre = 'male';
     this.birthDate = '';
+    this.comments = [];
   }
 }

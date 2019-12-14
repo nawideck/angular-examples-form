@@ -8,6 +8,7 @@ import { FormCustom } from '../../../../core/interfaces/form-custom';
 import { phoneValidator } from '../../../../ui/directives/validators/phone-validator.directive';
 import { Job } from '../../shared/models/job/job.model';
 import * as moment from 'moment';
+import { UserComment } from '../../shared/models/user-comment/user-comment';
 
 @Component({
   selector: 'app-examples-form',
@@ -23,6 +24,7 @@ export class ExamplesFormPageComponent implements OnInit, FormCustom {
    * TODO: add others validators
    * TODO: errors
    * TODO: general ergonomie
+   * TODO: améliorer form pattern (idea ? : https://blog.grossman.io/real-world-angular-reactive-forms/ ?)
    */
 
   @Input() user: User;
@@ -52,7 +54,8 @@ export class ExamplesFormPageComponent implements OnInit, FormCustom {
       phone: ['', [phoneValidator()]],
       job: [null],
       genre: [''],
-      birthDate: ['']
+      birthDate: [''],
+      comments: this.fb.array([])
     });
   }
 
@@ -67,6 +70,7 @@ export class ExamplesFormPageComponent implements OnInit, FormCustom {
         birthDate: moment(this.user.birthDate).toDate()
       });
     }
+    this.loadComments(this.user.comments);
   }
 
   prepareSaveEntity(): User {
@@ -86,5 +90,35 @@ export class ExamplesFormPageComponent implements OnInit, FormCustom {
 
   getFormRawValue() {
     return this.userForm.getRawValue();
+  }
+
+  get commentsArray(): FormArray {
+    return this.userForm.get('comments') as FormArray;
+  }
+
+  getCommentsFormGroup(comment: UserComment): FormGroup {
+    return this.fb.group({
+      id: [comment.id],
+      value: [comment.value],
+      date: [comment.date]
+    });
+  }
+
+  addComment(comment: UserComment): FormGroup {
+    const commentGroup = this.getCommentsFormGroup(comment);
+    console.log(this.commentsArray);
+    this.commentsArray.push(commentGroup);
+
+    // this.userForm.markAsDirty();
+
+    return commentGroup;
+  }
+
+  loadComments(comments: UserComment[]) {
+    if (this.user && this.user.comments) {
+      this.user.comments.forEach((comment: UserComment) => {
+        this.addComment(comment);
+      });
+    }
   }
 }

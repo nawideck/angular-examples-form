@@ -47,6 +47,30 @@
           <input class="form-control" id="inputPassword4" formControlName="email" />
         </div> -->
       </div>
+
+      <div formArrayName="comments">
+        <div class="form-row">
+          <label for="exampleFormControlTextarea1">Comments :</label>
+        </div>
+        <div *ngFor="let comment of commentsArray.controls; let i = index">
+          <div [formGroupName]="i">
+            <div class="form-row">
+              <div class="form-group col-12">
+                <textarea
+                  formControlName="value"
+                  class="form-control w-100"
+                  id="exampleFormControlTextarea1"
+                  rows="3"
+                ></textarea>
+              </div>
+
+              <div class="fom-row text-right w-100">
+                {{ comment.get('date').value | date }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="form-row">
         <div class="form-group"></div>
         <button type="submit" class="btn btn-primary">Sign in</button>

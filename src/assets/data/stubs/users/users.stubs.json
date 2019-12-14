@@ -9,6 +9,18 @@
       "name": "developer"
     },
     "genre": "male",
-    "birthDate": "1985-12-04T07:14:44.000Z"
+    "birthDate": "1985-12-04T07:14:44.000Z",
+    "comments": [
+      {
+        "id": 1,
+        "value": "Quisque tempor ipsum erat, non facilisis turpis sagittis sed.",
+        "date": "2019-02-04T07:14:44.000Z"
+      },
+      {
+        "id": 2,
+        "value": "Maecenas venenatis, mi sed molestie fringilla, eros magna pretium purus, sed consequat nisl ex vitae enim.",
+        "date": "2019-03-01T07:14:44.000Z"
+      }
+    ]
   }
 ]
