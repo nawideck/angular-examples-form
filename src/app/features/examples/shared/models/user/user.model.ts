@@ -7,6 +7,7 @@ export class User {
   public email: string;
   public job: Job;
   public genre: string;
+  public birthDate: string;
 
   constructor() {
     this.id = null;
@@ -15,5 +16,6 @@ export class User {
     this.email = '';
     this.job = new Job();
     this.genre = 'male';
+    this.birthDate = '';
   }
 }

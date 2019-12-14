@@ -7,9 +7,10 @@ import { ExamplesFormPageComponent } from './components/examples-form/examples-f
 import { ReactiveFormsModule } from '@angular/forms';
 import { JsonViewerComponent } from 'src/app/ui/components/json-viewer/json-viewer.component';
 import { PrettyJsonPipePipe } from 'src/app/ui/pipes/pretty-json-pipe/pretty-json-pipe.pipe';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 @NgModule({
   declarations: [ExamplesEditPageComponent, ExamplesFormPageComponent, JsonViewerComponent, PrettyJsonPipePipe],
-  imports: [CommonModule, ExamplesRoutingModule, ReactiveFormsModule]
+  imports: [CommonModule, ExamplesRoutingModule, ReactiveFormsModule, BsDatepickerModule.forRoot()]
 })
 export class ExamplesModule {}

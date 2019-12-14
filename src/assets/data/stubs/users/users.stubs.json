@@ -8,6 +8,7 @@
       "id": 1,
       "name": "developer"
     },
-    "genre": "male"
+    "genre": "male",
+    "birthDate": "1985-12-04T07:14:44.000Z"
   }
 ]
