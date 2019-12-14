@@ -4,7 +4,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { UserWebService } from './user-web.service';
 import { User } from '../../models/user/user.model';
 
-fdescribe('UserWebService', () => {
+describe('UserWebService', () => {
   let userWebService: UserWebService;
   let http: HttpTestingController;
   let baseUrl: string;

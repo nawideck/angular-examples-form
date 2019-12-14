@@ -3,6 +3,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ExamplesFormPageComponent } from './examples-form.component';
 import { JsonViewerComponent } from 'src/app/ui/components/json-viewer/json-viewer.component';
 import { PrettyJsonPipePipe } from 'src/app/ui/pipes/pretty-json-pipe/pretty-json-pipe.pipe';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('ExamplesFormPageComponent', () => {
   let component: ExamplesFormPageComponent;
@@ -11,7 +12,8 @@ describe('ExamplesFormPageComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ExamplesFormPageComponent, JsonViewerComponent, PrettyJsonPipePipe],
-      imports: [FormsModule, ReactiveFormsModule]
+      imports: [FormsModule, ReactiveFormsModule],
+      schemas: [NO_ERRORS_SCHEMA]
     }).compileComponents();
   }));
 
