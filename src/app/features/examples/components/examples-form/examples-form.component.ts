@@ -7,6 +7,9 @@ import { User } from '../../shared/models/user/user.model';
 import { FormCustom } from '../../../../core/interfaces/form-custom';
 import { phoneValidator } from '../../../../ui/directives/validators/phone-validator.directive';
 import { Job } from '../../shared/models/job/job.model';
+import * as moment from 'moment';
+import { UserComment } from '../../shared/models/user-comment/user-comment';
+import { FormToolsService } from 'src/app/core/shared/services/form-tools/form-tools.service';
 
 @Component({
   selector: 'app-examples-form',
@@ -15,13 +18,16 @@ import { Job } from '../../shared/models/job/job.model';
 })
 export class ExamplesFormPageComponent implements OnInit, FormCustom {
   /**
-   * TODO: checkbox
+   * TODO: ngSelect example (multi select)
    * TODO: autocomplete
    * TODO: upload file (ajax)
-   * TODO: ArrayForm
+   * TODO: ArrayForm add button
    * TODO: add others validators
    * TODO: errors
    * TODO: general ergonomie
+   * TODO: améliorer form pattern
+   * TODO: try catch ?
+   * TODO: tests
    */
 
   @Input() user: User;
@@ -33,15 +39,15 @@ export class ExamplesFormPageComponent implements OnInit, FormCustom {
 
   // Form :
   public userForm: FormGroup;
+  private isSubmitted: boolean;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private formToolsService: FormToolsService) {
+    this.isSubmitted = false;
     this.createForm();
   }
 
   ngOnInit() {
-    console.log(this.user);
     this.populateForm();
-    console.log(this.jobs);
   }
 
   createForm(): void {
@@ -50,7 +56,10 @@ export class ExamplesFormPageComponent implements OnInit, FormCustom {
       email: ['', [Validators.required, Validators.email]],
       phone: ['', [phoneValidator()]],
       job: [null],
-      genre: ['']
+      genre: [''],
+      birthDate: [''],
+      comments: this.fb.array([]),
+      activated: [false]
     });
   }
 
@@ -61,13 +70,16 @@ export class ExamplesFormPageComponent implements OnInit, FormCustom {
         email: this.user.email,
         phone: this.user.phone,
         job: this.user.job,
-        genre: this.user.genre
+        genre: this.user.genre,
+        birthDate: moment(this.user.birthDate).toDate(),
+        activated: this.user.activated
       });
+      this.initCommentsFormArray(this.user.comments);
     }
   }
 
   prepareSaveEntity(): User {
-    const formModel: User = this.userForm.value;
+    const formModel: User = this.userForm.getRawValue();
     return Object.assign(this.user, formModel);
   }
 
@@ -79,5 +91,42 @@ export class ExamplesFormPageComponent implements OnInit, FormCustom {
 
   compareFnJob(job1: Job, job2: Job) {
     return job1 && job2 ? job1.id === job2.id : job1 === job2;
+  }
+
+  getFormRawValue() {
+    return this.userForm.getRawValue();
+  }
+
+  get commentsFormArray(): FormArray {
+    return this.userForm.get('comments') as FormArray;
+  }
+
+  getCommentsFormGroup(comment: UserComment): FormGroup {
+    return this.fb.group({
+      id: [comment.id],
+      value: [comment.value],
+      date: [comment.date]
+    });
+  }
+
+  createComment(comment: UserComment): FormGroup {
+    const commentGroup = this.getCommentsFormGroup(comment);
+    this.commentsFormArray.push(commentGroup);
+
+    // this.userForm.markAsDirty();
+
+    return commentGroup;
+  }
+
+  initCommentsFormArray(comments: UserComment[]) {
+    if (this.user && this.user.comments) {
+      this.user.comments.forEach((comment: UserComment) => {
+        this.createComment(comment);
+      });
+    }
+  }
+
+  getFieldClassValidation(formControl: FormControl): any {
+    return this.formToolsService.getFieldClassValidation(formControl, this.isSubmitted);
   }
 }

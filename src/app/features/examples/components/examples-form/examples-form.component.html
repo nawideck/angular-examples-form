@@ -1,31 +1,147 @@
 <div class="row">
   <div class="col-md-6">
+    <h2>Form html</h2>
     <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
       <div class="form-row">
         <div class="form-group col-md-6">
+          <!-- Input Name -->
           <label for="inputEmail4">Name *</label>
-          <input type="email" class="form-control" id="inputEmail4" formControlName="name" />
+          <input
+            type="text"
+            class="form-control"
+            id="inputEmail4"
+            formControlName="name"
+            [ngClass]="getFieldClassValidation(userForm?.get('name'))"
+          />
+          <div class="invalid-feedback">
+            <app-error-field-messages [fc]="userForm?.get('name')"></app-error-field-messages>
+          </div>
         </div>
+        <!-- Input Email -->
         <div class="form-group col-md-6">
           <label for="inputPassword4">Email *</label>
-          <input class="form-control" id="inputPassword4" formControlName="email" />
+          <input
+            class="form-control"
+            id="inputPassword4"
+            formControlName="email"
+            [ngClass]="getFieldClassValidation(userForm?.get('email'))"
+          />
+          <div class="invalid-feedback">
+            <app-error-field-messages [fc]="userForm?.get('email')"></app-error-field-messages>
+          </div>
         </div>
       </div>
       <div class="form-row">
         <div class="form-group col-md-6">
+          <!-- Input Phone -->
           <label for="inputPassword4">Phone *</label>
-          <input class="form-control" id="inputPassword4" formControlName="phone" />
+          <input
+            class="form-control"
+            id="inputPassword4"
+            formControlName="phone"
+            [ngClass]="getFieldClassValidation(userForm?.get('phone'))"
+          />
+          <div class="invalid-feedback">
+            <app-error-field-messages [fc]="userForm?.get('phone')"></app-error-field-messages>
+          </div>
         </div>
-
+        <!-- Input Job -->
         <div class="form-group col-md-6">
           <label for="inputState">Job</label>
-          <select id="inputState" class="form-control" formControlName="job">
-            <option *ngFor="let job of jobs">{{ job.name }}</option>
+          <select id="inputState" class="form-control" formControlName="job" [compareWith]="compareFnJob">
+            <option *ngFor="let job of jobs" [ngValue]="job">{{ job.name }}</option>
           </select>
         </div>
       </div>
-      <button type="submit" class="btn btn-primary">Sign in</button>
+      <!-- Radio Genre -->
+      <div class="form-row">
+        <div class="form-group col-md12">
+          <label class="">Genre</label>
+        </div>
+      </div>
+      <div class="form-check">
+        <div class="custom-control custom-radio">
+          <input class="custom-control-input" type="radio" id="inputGenreMale" formControlName="genre" value="male" />
+          <label class="custom-control-label" for="inputGenreMale">
+            Male
+          </label>
+        </div>
+      </div>
+      <div class="form-check">
+        <div class="custom-control custom-radio">
+          <input
+            class="custom-control-input"
+            type="radio"
+            id="inputGenreFemale"
+            formControlName="genre"
+            value="female"
+          />
+          <label class="custom-control-label" for="inputGenreFemale">
+            Female
+          </label>
+        </div>
+      </div>
+      <!-- Checkbox of 'activated' field -->
+      <div class="form-row">
+        <div class="form-group col-md12">
+          <label class="">State</label>
+        </div>
+      </div>
+      <div class="form-check">
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="customCheck1" formControlName="activated" />
+          <label class="custom-control-label" for="customCheck1">activated</label>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <!-- Input Birth date -->
+          <label for="inputEmail4">Birth date</label>
+          <input type="text" class="form-control" id="inputEmail4" formControlName="birthDate" bsDatepicker />
+        </div>
+        <!-- <div class="form-group col-md-6">
+          <label for="inputPassword4">Email *</label>
+          <input class="form-control" id="inputPassword4" formControlName="email" />
+        </div> -->
+      </div>
+      <!-- FormArray Comments -->
+      <div formArrayName="comments">
+        <div class="form-row">
+          <label for="exampleFormControlTextarea1">Comments :</label>
+        </div>
+        <div *ngFor="let comment of commentsFormArray.controls; let i = index">
+          <div [formGroupName]="i">
+            <div class="form-row">
+              <div class="form-group col-12">
+                <!-- Text area comment value-->
+                <textarea
+                  formControlName="value"
+                  class="form-control w-100"
+                  id="exampleFormControlTextarea1"
+                  rows="3"
+                ></textarea>
+              </div>
+              <!-- Date comment -->
+              <div class="fom-row text-right w-100">
+                {{ comment.get('date').value | date }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"></div>
+        <button type="submit" class="btn btn-primary">Sign in</button>
+      </div>
     </form>
   </div>
-  <div class="col-md-6"><app-json-viewer [object]="user"></app-json-viewer></div>
+  <div class="col-md-6">
+    <div class="row">
+      <div class="col-12">
+        <h2>Form values</h2>
+        <app-json-viewer [object]="getFormRawValue()"></app-json-viewer>
+      </div>
+    </div>
+  </div>
 </div>
