@@ -1,0 +1,23 @@
+language: node_js
+node_js:
+  - '12'
+dist: trusty
+sudo: required
+branches:
+  only:
+    - master
+    - develop
+before_script:
+  - npm install -g @angular/cli
+script:
+  # - ng lint
+  - npm run test-headless
+  - ng build --prod --base-href https://nawideck.github.io/angular-examples-form/
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  local_dir: dist/angular-examples-form
+  on:
+    all_branches: true
+    condition: $TRAVIS_BRANCH =~ ^(develop)$
