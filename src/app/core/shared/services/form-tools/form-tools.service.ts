@@ -8,11 +8,9 @@ export class FormToolsService {
   /**
    * Generate class for field validation (is-invalid or invalid)
    *
-   * @param {FormGroup} formGroup
-   * @param {string} fieldName
-   * @param {*} isSubmitted
-   * @returns {*}
-   * @memberof FormToolsService
+   * @param formControl form control to analyse
+   * @param isSubmitted indicate if the form that containing the control is submitted or not
+   * @returns object with class
    */
   public getFieldClassValidation(formControl: FormControl, isSubmitted: boolean): object {
     return {

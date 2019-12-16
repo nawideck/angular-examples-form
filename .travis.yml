@@ -10,7 +10,7 @@ branches:
 before_script:
   - npm install -g @angular/cli
 script:
-  # - ng lint
+  - ng lint
   - npm run test-headless
   - ng build --prod --base-href https://nawideck.github.io/angular-examples-form/
 deploy:
