@@ -2,15 +2,10 @@
  * Information of a field in error
  *
  * @export
- * @class FieldErrorInfo
- * @implements {FieldErrorInfoInterface}
  */
 export class FieldErrorInfo {
   /**
    * Name of the error
-   *
-   * @type {string}
-   * @memberof FieldErrorInfo
    */
   public name: string;
 
@@ -18,17 +13,13 @@ export class FieldErrorInfo {
    * Information about the error.
    * The type is any because angular can generate any types.
    * See the angular documentation
-   *
-   * @type {*}
-   * @memberof FieldErrorInfo
    */
   public info: any;
 
   /**
    * Creates an instance of FieldErrorInfo.
-   * @param {string} name
-   * @param {*} info
-   * @memberof FieldErrorInfo
+   * @param name name of field
+   * @param info information of field
    */
   constructor(name: string, info: any) {
     this.name = name;

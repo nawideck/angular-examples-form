@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { FieldErrorInfo } from './field-error-info.model';
 import { Subscription, merge } from 'rxjs';
@@ -11,7 +11,7 @@ import forIn from 'lodash-es/forIn';
   templateUrl: './error-field-messages.component.html',
   styleUrls: ['./error-field-messages.component.scss']
 })
-export class ErrorFieldMessagesComponent implements OnInit {
+export class ErrorFieldMessagesComponent implements OnInit, OnDestroy {
   private pFc: FormControl;
 
   public fieldsError: Array<FieldErrorInfo>;
@@ -36,7 +36,6 @@ export class ErrorFieldMessagesComponent implements OnInit {
 
   /**
    * Creates an instance of ErrorFieldMessagesComponent.
-   * @memberof ErrorFieldMessagesComponent
    */
   constructor() {
     this.fieldsError = [];
@@ -44,15 +43,11 @@ export class ErrorFieldMessagesComponent implements OnInit {
 
   /**
    * Angular onInit native function
-   *
-   * @memberof ErrorFieldMessagesComponent
    */
   ngOnInit() {}
 
   /**
    * Angular onDestroy native function
-   *
-   * @memberof ErrorFieldMessagesComponent
    */
   ngOnDestroy() {
     if (this.valueSubscription) {
@@ -62,9 +57,6 @@ export class ErrorFieldMessagesComponent implements OnInit {
 
   /**
    * Update field errors
-   *
-   * @returns {*}
-   * @memberof ErrorFieldMessagesComponent
    */
   updateFieldErrors(): void {
     let formErrors;
@@ -88,8 +80,7 @@ export class ErrorFieldMessagesComponent implements OnInit {
   /**
    * Get list of field errors
    *
-   * @returns
-   * @memberof ErrorFieldMessagesComponent
+   * @returns list of field errors
    */
   getFieldErrors(): Array<FieldErrorInfo> {
     return this.fieldsError;

@@ -12,35 +12,22 @@ import { HttpClient } from '@angular/common/http';
 export class UserWebService {
   /**
    * baseUrl of the server
-   *
-   * @private
-   * @type {string}
-   * @memberof UserWebService
    */
   private baseUrlServer: string;
 
   /**
    * baseUrl of the mock
-   *
-   * @private
-   * @type {string}
-   * @memberof UserWebService
    */
   private baseUrlMock: string;
 
   /**
    * indicate if mock is active or not
-   *
-   * @private
-   * @type {boolean}
-   * @memberof UserWebService
    */
   private mockActive: boolean;
 
   /**
    * Creates an instance of UserWebService.
-   * @param {HttpClient} http
-   * @memberof UserWebService
+   * @param http httpClient objet
    */
   constructor(private http: HttpClient) {
     this.baseUrlServer = 'api/v1/users';
@@ -51,8 +38,7 @@ export class UserWebService {
   /**
    * Activate or not mock
    *
-   * @param {boolean} activate
-   * @memberof UserWebService
+   * @param activate activate mock or not
    */
   public activateMock(activate: boolean) {
     this.mockActive = activate;
@@ -61,9 +47,7 @@ export class UserWebService {
   /**
    * Get base url
    *
-   * @private
-   * @returns {string}
-   * @memberof UserWebService
+   * @returns base url
    */
   private getBaseUrl(): string {
     return this.mockActive ? this.baseUrlMock : this.baseUrlServer;
@@ -73,8 +57,7 @@ export class UserWebService {
    * Get all users
    * GET: api/v1/users
    *
-   * @returns {Observable<User[]>}
-   * @memberof UserWebService
+   * @returns list of users
    */
   public getAll(): Observable<User[]> {
     return this.http.get<User[]>(`${this.getBaseUrl()}`);
@@ -84,9 +67,8 @@ export class UserWebService {
    * Get one user by id
    * GET: api/v1/users/${id}
    *
-   * @param {number} id
-   * @returns {Observable<User>}
-   * @memberof UserWebService
+   * @param id id of user to get
+   *
    */
   public get(id: number): Observable<User> {
     const url = this.mockActive ? this.getBaseUrl() : `${this.getBaseUrl()}/${id}`;
@@ -102,9 +84,8 @@ export class UserWebService {
    * Create user
    * POST: api/v1/users
    *
-   * @param {User} user
-   * @returns {Observable<User>}
-   * @memberof UserWebService
+   * @param user object of user to create
+   * @returns user created
    */
   public create(user: User): Observable<User> {
     return this.mockActive ? of(user) : this.http.post<User>(`${this.getBaseUrl()}`, user);
@@ -114,9 +95,8 @@ export class UserWebService {
    * Update datas of user
    * PATCH: api/v1/users
    *
-   * @param {User} user
-   * @returns {Observable<User>}
-   * @memberof UserWebService
+   * @param user object of user to update
+   * @returns object of user updated
    */
   public update(user: User): Observable<User> {
     return this.mockActive ? of(user) : this.http.patch<User>(`${this.getBaseUrl()}`, user);
@@ -126,9 +106,7 @@ export class UserWebService {
    * Delete user
    * DELETE: api/v1/users
    *
-   * @param {number} id
-   * @returns {Observable<void>}
-   * @memberof UserWebService
+   * @param id id of user to delete
    */
   public delete(id: number): Observable<void> {
     const url = `${this.getBaseUrl()}/${id}`;
