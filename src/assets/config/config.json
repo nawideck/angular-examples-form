@@ -1,0 +1,6 @@
+{
+  "mode": "external",
+  "table": {
+    "pagination": [5, 10, 15]
+  }
+}
