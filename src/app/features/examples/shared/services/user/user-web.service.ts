@@ -30,9 +30,10 @@ export class UserWebService {
    * @param http httpClient objet
    */
   constructor(private http: HttpClient) {
-    this.baseUrlServer = 'api/v1/users';
+    this.baseUrlServer = 'http://my-json-server.typicode.com/nawideck/db-json/users';
+    // this.baseUrlServer = 'api/v1/users';
     this.baseUrlMock = 'assets/data/stubs/users/users.stubs.json';
-    this.mockActive = true;
+    this.mockActive = false;
   }
 
   /**
@@ -88,7 +89,7 @@ export class UserWebService {
    * @returns user created
    */
   public create(user: User): Observable<User> {
-    return this.mockActive ? of(user) : this.http.post<User>(`${this.getBaseUrl()}`, user);
+    return this.mockActive ? of(user) : this.http.post<User>(`${this.getBaseUrl()}/${user.id}`, user);
   }
 
   /**
@@ -99,7 +100,7 @@ export class UserWebService {
    * @returns object of user updated
    */
   public update(user: User): Observable<User> {
-    return this.mockActive ? of(user) : this.http.patch<User>(`${this.getBaseUrl()}`, user);
+    return this.mockActive ? of(user) : this.http.put<User>(`${this.getBaseUrl()}/${user.id}`, user);
   }
 
   /**
